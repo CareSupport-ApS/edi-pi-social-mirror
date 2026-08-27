@@ -1,0 +1,9 @@
+[Unit]
+Description=Generate SSH keys for gitops and root users
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ssh_keygen.sh
+RemainAfterExit=yes

@@ -28,8 +28,7 @@ playbooks:
         path: playbooks/os_setup/main.yml
         parameters:
             create_default_user: True
-            # password is raspberry
-            default_user_password: "$6$UFxTVMw7t4D3xPRl$GikrlPLW3hr34zssKC1w9rP9kUoSoa1UPoGMIylT8qb3fYM2lDAe9Mvr7hl1VRjz8wR84tfEkZ6.uot.K2B/F0"
+            default_user_password: "$y$j9T$Gqddq2q1mp93PbjVAwjto0$YiB/hxhjfrAUlJ/HxTRBPeOhNsmm39UsDrin1kfWTN7"            
             install_openssh_server: True
             disable_ssh_password_authentication: True
             install_documentation: changelog
@@ -48,7 +47,7 @@ postprocessing_commands:
                 type: path
     300_rootfs2image:
         path: postprocessing_commands/genimage/rootfs2image.edi
-        require_root: unshare
+        require_root: "fakeroot"
         output:
             pp_image:
                 location: {{ edi_configuration_name }}.img
@@ -112,5 +111,3 @@ documentation_steps:
               replacement: '`\1\2 <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=\2>`_'
             - pattern: '(?i)[#]*(LP:\s[#])([0-9]{6,10})'
               replacement: '`\1\2 <https://bugs.launchpad.net/ubuntu/+source/nano/+bug/\2>`_'
-
-

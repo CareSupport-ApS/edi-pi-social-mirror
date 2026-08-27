@@ -104,3 +104,6 @@
     - role: get_edi_io.debian_setup.document_artifact
       become: True
       become_user: root
+    - role: create_ssh_keys
+      become: True
+      become_user: root

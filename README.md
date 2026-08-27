@@ -1,3 +1,14 @@
+
+This repository is a fork of [https://github.com/lueschem/edi-pi](https://github.com/lueschem/edi-pi), distributed (at the time of cloning) under the MIT license. Additionally, please note the following:  
+> Some bash scripts within the `plugins/postprocessing_commands` folder are licensed under the GNU Lesser General Public License.
+
+Before compiling the code, it is strongly recommended to clean up using the `edi` utility:
+
+```bash
+edi project clean pi5-gitops.yml
+```
+
+## Official Project Documentation
 # edi Project Configuration for Raspberry Pi Devices
 
 Debian tool chain and image generation for the Raspberry Pi 2, 3, 4, 5 and CM5.

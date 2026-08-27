@@ -1,8 +1,12 @@
 # edi build artifacts
 
-artifacts/*
+/artifacts
 main.retry
 
 # pycharm files
 .idea/*
 /configuration/mender/mender_custom.yml
+
+# temp files
+/*tmp*
+plugins/playbooks/os_setup/roles/create_ssh_keys/files/ssh_private_key

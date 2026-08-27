@@ -1,0 +1,89 @@
+---
+- name: Ensure .ssh directory exists for gitops user
+  file:
+    path: /home/{{ gitops_user_name }}/.ssh
+    state: directory
+    owner: "{{ gitops_user_name }}"
+    group: "{{ gitops_user_group_name }}"
+    mode: '0700'
+
+- name: Deploy SSH private key for gitops user
+  copy:
+    src: ssh_private_key
+    dest: /home/{{ gitops_user_name }}/.ssh/id_ed25519
+    owner: "{{ gitops_user_name }}"
+    group: "{{ gitops_user_group_name }}"
+    mode: '0600'
+
+- name: Ensure .ssh directory exists for root user
+  file:
+    path: /root/.ssh
+    state: directory
+    mode: '0700'
+
+- name: Copy SSH private key to root
+  copy:
+    src: ssh_private_key
+    dest: /root/.ssh/id_ed25519
+    owner: root
+    group: root
+    mode: '0600'
+
+##################################
+
+- name: Copy SSH key generation script
+  copy:
+    src: ssh_keygen.sh
+    dest: /usr/local/bin/ssh_keygen.sh
+    owner: root
+    group: root
+    # mode: '0644'
+    mode: '0755'
+
+- name: Copy the systemd service for SSH key generation
+  copy:
+    src: ssh_keygen.service
+    dest: /etc/systemd/system/ssh_keygen.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy the systemd timer for delayed execution
+  copy:
+    src: ssh_keygen.timer
+    dest: /etc/systemd/system/ssh_keygen.timer
+    owner: root
+    group: root
+    mode: '0644'
+ 
+- name: Copy Mender GitOps playbook script
+  copy:
+    src: mender-playbook.sh
+    dest: /usr/local/bin/mender-playbook.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy progress bar script
+  copy:
+    src: progress_bar.py
+    dest: /usr/local/bin/progress_bar.py
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy display initialization script
+  copy:
+    src: init_display.sh
+    dest: /usr/local/bin/init_display.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy systemd service for GitOps playbook
+  copy:
+    src: mender-playbook.service
+    dest: /etc/systemd/system/mender-playbook.service
+    owner: root
+    group: root
+    mode: '0755'

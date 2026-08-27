@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Mender GitOps playbook after SSH setup
+After=ssh_keygen.service
+Requires=ssh_keygen.service
+ConditionPathExists=!/var/lib/mender-playbook.lock
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/mender-playbook.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -10,4 +10,9 @@ bare_metal_packages:
   - network-manager
   - systemd-timesyncd
   - udev
-
+  - xorg
+  - openbox
+  - xinit
+  - xserver-xorg-legacy
+  - python3-tk
+  - unclutter

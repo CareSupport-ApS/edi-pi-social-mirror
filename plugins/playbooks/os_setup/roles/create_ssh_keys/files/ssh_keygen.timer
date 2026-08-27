@@ -1,0 +1,9 @@
+[Unit]
+Description=Delay SSH key generation until network is fully online
+
+[Timer]
+OnBootSec=120
+Unit=ssh_keygen.service
+
+[Install]
+WantedBy=timers.target
