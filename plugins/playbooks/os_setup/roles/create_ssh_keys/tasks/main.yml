@@ -87,3 +87,11 @@
     owner: root
     group: root
     mode: '0755'
+
+- name: Mark this image as a target device.
+  copy:
+    content: "target\n"
+    dest: /etc/edi-role
+    owner: root
+    group: root
+    mode: '0644'

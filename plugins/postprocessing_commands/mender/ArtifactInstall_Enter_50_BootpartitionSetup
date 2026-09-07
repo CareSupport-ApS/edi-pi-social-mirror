@@ -102,7 +102,7 @@ if [ "${device_type}" == "pi3-v3-arm64" ]
 then
     cp "${NEXT_ROOT_MNT}/boot/image-firmware/start.elf" "/boot/firmware/p${NEXT_BOOT_PART}start.elf"
     cp "${NEXT_ROOT_MNT}/boot/image-firmware/fixup.dat" "/boot/firmware/p${NEXT_BOOT_PART}fixup.dat"
-elif [ "${device_type}" == "pi4-v3-arm64" ]
+elif [ "${device_type}" == "pi4-v3-arm64" ] || [ "${device_type}" == "pi5-v3-arm64" ]
 then
     cp "${NEXT_ROOT_MNT}/boot/image-firmware/start4.elf" "/boot/firmware/p${NEXT_BOOT_PART}start4.elf"
     cp "${NEXT_ROOT_MNT}/boot/image-firmware/fixup4.dat" "/boot/firmware/p${NEXT_BOOT_PART}fixup4.dat"
