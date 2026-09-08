@@ -97,7 +97,7 @@ if [ -d "rootfs/boot/image-firmware" ]; then
         cp rootfs/boot/image-firmware/bootcode.bin rootfs/boot/firmware/bootcode.bin
         cp rootfs/boot/image-firmware/start.elf rootfs/boot/firmware/p3start.elf
         cp rootfs/boot/image-firmware/fixup.dat rootfs/boot/firmware/p3fixup.dat
-    elif [ "${MENDER_DEVICE_TYPE}" == "pi4-v3" ]; then
+    elif [ "${MENDER_DEVICE_TYPE}" == "pi4-v3" ] || [ "${MENDER_DEVICE_TYPE}" == "pi5-v3" ]; then
         cp rootfs/boot/image-firmware/start4.elf rootfs/boot/firmware/p3start4.elf
         cp rootfs/boot/image-firmware/fixup4.dat rootfs/boot/firmware/p3fixup4.dat
     fi

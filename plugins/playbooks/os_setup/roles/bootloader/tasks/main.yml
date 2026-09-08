@@ -14,6 +14,17 @@
     name: edi-boot-shim
     install_recommends: no
 
+# The package-provided boot.spec.rpi5.arm64 omits overlay_map.dtb and
+# vc4-kms-v3d-pi5.dtbo, so the firmware falls back to the legacy
+# vc4-kms-v3d.dtbo (written for BCM2835-era boards) instead of the
+# BCM2712-specific overlay, and vc4/v3d never load on Pi 5.
+# See https://github.com/lueschem/edi-boot-shim (still present upstream).
+- name: Fix missing GPU/KMS overlays in the raspberry pi 5 boot spec.
+  copy:
+    src: boot.spec.rpi5.arm64
+    dest: /etc/edi-boot-shim/boot.spec.rpi5.arm64
+  when: mender_device_type == "pi5-v3"
+
 - name: Create boot firmware directory.
   file:
     path: "{{ bootloader_location }}"
