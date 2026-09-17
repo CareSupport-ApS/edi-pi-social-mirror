@@ -70,6 +70,17 @@
     src: mender.conf
     dest: /etc/mender/
 
+- name: Provide an empty fallback mender.conf on the data partition.
+  copy:
+    content: "{}\n"
+    dest: /data/mender/mender.conf
+  # The rootfs-image update module (mender-update 5.0.1) tries to read
+  # ${MENDER_DATASTORE_DIR:-/var/lib/mender}/mender.conf (symlinked to
+  # /data/mender/mender.conf) before falling back to /etc/mender/mender.conf,
+  # without checking the file exists first. An empty object satisfies that
+  # read without providing any real (i.e. overriding) values, silencing a
+  # "cannot open ... No such file" warning on every deployment.
+
 - name: Write mender-connect configuration.
   template:
     src: mender-connect.conf
